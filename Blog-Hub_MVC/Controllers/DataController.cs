@@ -1,4 +1,5 @@
-﻿using Blog_Hub_MVC.Extensions;
+﻿using Blog_Hub_MVC.Data;
+using Blog_Hub_MVC.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,14 +14,23 @@ namespace Blog_Hub_MVC.Controllers
     [Authorize]
     public class DataController : Controller
     {
+        private readonly ApplicationDbContext db;
+
+        public DataController(ApplicationDbContext db)
+        {
+            this.db = db;
+        }
+
+
         public IActionResult Index()
         {
-            var userId = User.GetId();
-            if (string.IsNullOrEmpty(userId))
-            {
-
-            }
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddBlogPost()
+        {
+            return RedirectToAction("Index", "Home");
         }
     }
 }

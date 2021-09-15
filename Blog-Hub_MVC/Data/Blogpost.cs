@@ -18,6 +18,8 @@ namespace Blog_Hub_MVC.Data
         [Required, MinLength(100)]
         public string Content { get; set; }
 
+        public string PostPicture { get; set; }
+
         [Required]
         public DateTime CreationTime { get; set; } = DateTime.Now;
 
